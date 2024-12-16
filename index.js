@@ -82,7 +82,7 @@ const formatData = (data) => {
   };
 };
 
-app.get('/leetcode/:id', (req, res) => {
+app.get('/:id', (req, res) => {
   const user = req.params.id;
   fetch('https://leetcode.com/graphql', {
     method: 'POST',
