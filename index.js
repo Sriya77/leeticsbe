@@ -1,6 +1,3 @@
-// 
-
-
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -16,10 +13,10 @@ app.use(cors({
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Optional: Serve index.html as a fallback for the root route
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// });
+// 
 // Dynamic route for "/:id"
 app.get('/:id', leet.leetcode);
 
