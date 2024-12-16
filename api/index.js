@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-
+const serverless = require('serverless-http');
 const app = express();
 app.use(cors({
     origin: 'https://leeteecs.vercel.app/' // Adjust the CORS policy as needed
@@ -112,6 +112,7 @@ app.get('/:id', (req, res) => {
 console.log(`Server is running on port ${process.env.PORT || 4000}`);
 
 // Start the backend server
-app.listen(4000, () => {
-  console.log('LeetCode Backend is running on port 4000');
-});
+// app.listen(4000, () => {
+//   console.log('LeetCode Backend is running on port 4000');
+// });
+module.exports = serverless(app);
