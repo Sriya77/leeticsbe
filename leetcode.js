@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const serverless = require('serverless-http');
+
 const app = express();
 app.use(cors({
-    origin: 'https://leeteecs.vercel.app/' // Adjust the CORS policy as needed
+    origin: '*' // Adjust the CORS policy as needed
 }));
 
 const query = `
@@ -82,11 +82,8 @@ const formatData = (data) => {
   };
 };
 
-
-app.get('/:id', (req, res) => {
+app.get('/leetcode/:id', (req, res) => {
   const user = req.params.id;
-  console.log(user);
-  console.log("hi");
   fetch('https://leetcode.com/graphql', {
     method: 'POST',
     headers: {
@@ -97,7 +94,6 @@ app.get('/:id', (req, res) => {
   })
     .then((result) => result.json())
     .then((data) => {
-      console.log('LeetCode Response:', data); 
       if (data.errors) {
         res.send({ data });
       } else {
@@ -109,10 +105,8 @@ app.get('/:id', (req, res) => {
       res.status(500).send(err);
     });
 });
-console.log(`Server is running on port ${process.env.PORT || 4000}`);
 
 // Start the backend server
-// app.listen(4000, () => {
-//   console.log('LeetCode Backend is running on port 4000');
-// });
-module.exports = serverless(app);
+app.listen(4000, () => {
+  console.log('LeetCode Backend is running on port 4000');
+});
